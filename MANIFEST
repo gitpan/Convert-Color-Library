@@ -1,0 +1,8 @@
+Build.PL
+lib/Convert/Color/Library.pm
+MANIFEST			This list of files
+t/00use.t
+t/01color.t
+t/02dicts.t
+Makefile.PL
+META.yml
