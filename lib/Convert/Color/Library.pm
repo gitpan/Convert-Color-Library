@@ -1,13 +1,14 @@
 package Convert::Color::Library;
 
 use strict;
+use warnings;
 use base qw( Convert::Color::RGB8 );
 
 use constant COLOR_SPACE => 'lib';
 
 use Carp;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 NAME
 
@@ -122,4 +123,4 @@ L<Color::Library> - An easy-to-use and comprehensive named-color library
 
 =head1 AUTHOR
 
-Paul Evans E<lt>leonerd@leonerd.org.ukE<gt>
+Paul Evans <leonerd@leonerd.org.uk>
