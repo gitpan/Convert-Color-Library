@@ -1,5 +1,8 @@
 Revision history for Convert-Color-Library
 
+0.03    CHANGES:
+         * Updated for Convert::Color 0.06
+
 0.02    CHANGES:
          * Added 'use warnings'
          * Various updates to keep CPANTS happy

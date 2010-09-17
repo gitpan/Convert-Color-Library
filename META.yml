@@ -1,22 +1,24 @@
 ---
-name: Convert-Color-Library
-version: 0.02
+abstract: 'named lookup of colors from C<Color::Library>'
 author:
   - 'Paul Evans <leonerd@leonerd.org.uk>'
-abstract: 'named lookup of colors from C<Color::Library>'
-license: perl
-resources:
-  license: http://dev.perl.org/licenses/
-requires:
-  Color::Library: 0
-  Convert::Color: 0.02
 build_requires:
   Test::More: 0
-provides:
-  Convert::Color::Library:
-    file: lib/Convert/Color/Library.pm
-    version: 0.02
-generated_by: Module::Build version 0.33
+configure_requires:
+  Module::Build: 0.36
+generated_by: 'Module::Build version 0.3607'
+license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
+name: Convert-Color-Library
+provides:
+  Convert::Color::Library:
+    file: lib/Convert/Color/Library.pm
+    version: 0.03
+requires:
+  Color::Library: 0
+  Convert::Color: 0.06
+resources:
+  license: http://dev.perl.org/licenses/
+version: 0.03

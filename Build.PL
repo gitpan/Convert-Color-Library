@@ -3,20 +3,19 @@ use warnings;
 
 use Module::Build;
 
-my $build = Module::Build->new
-  (
+my $build = Module::Build->new(
    module_name => 'Convert::Color::Library',
    requires => {
-                 'Convert::Color' => 0.02,
-                 'Color::Library' => 0,
-               },
+      'Convert::Color' => '0.06',
+      'Color::Library' => 0,
+   },
    build_requires => {
-                 'Test::More' => 0,
-               },
+      'Test::More' => 0,
+   },
    license => 'perl',
    create_makefile_pl => 'traditional',
    create_license => 1,
    create_readme  => 1,
-  );
+);
 
 $build->create_build_script;
