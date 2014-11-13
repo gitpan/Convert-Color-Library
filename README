@@ -1,5 +1,5 @@
 NAME
-    "Convert::Color::Library" - named lookup of colors from "Color::Library"
+    `Convert::Color::Library' - named lookup of colors from `Color::Library'
 
 SYNOPSIS
     Directly:
@@ -36,19 +36,31 @@ CONSTRUCTOR
 
      dicts/name
 
-    Then "dicts" is parsed as a comma-separated list of dictionary names to
-    pass to "Color::Library".
+    Then `dicts' is parsed as a comma-separated list of dictionary names to
+    pass to `Color::Library'.
+
+METHODS
+  $name = $color->name
+  $dict = $color->dict
+    Returns the name of the color within its dictionary, and the name of the
+    dictionary itself.
 
 TODO
     *   Consider an API for getting the list of dictionary names and colour
         names. That said, it's easy enough to do directly to
-        "Color::Library", so maybe not needed.
+        `Color::Library', so maybe not needed.
+
+    *   Expose other dictionaries (SVG? Windows?) as named spaces, like the
+        HTML one.
 
 SEE ALSO
     *   Convert::Color - color space conversions
 
     *   Color::Library - An easy-to-use and comprehensive named-color
         library
+
+    *   Convert::Color::HTML - color conversion using
+        `Color::Library::Dictionary::HTML'
 
 AUTHOR
     Paul Evans <leonerd@leonerd.org.uk>

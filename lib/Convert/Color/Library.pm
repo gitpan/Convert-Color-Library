@@ -1,7 +1,7 @@
 #  You may distribute under the terms of either the GNU General Public License
 #  or the Artistic License (the same terms as Perl itself)
 #
-#  (C) Paul Evans, 2009,2010 -- leonerd@leonerd.org.uk
+#  (C) Paul Evans, 2009-2014 -- leonerd@leonerd.org.uk
 
 package Convert::Color::Library;
 
@@ -13,7 +13,7 @@ __PACKAGE__->register_color_space( 'lib' );
 
 use Carp;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 NAME
 
@@ -73,32 +73,46 @@ sub new
 
    require Color::Library;
 
-   if( @_ == 1 ) {
-      my $name = $_[0];
+   @_ == 1 or
+      croak "usage: Convert::Color::Library->new( NAME )";
 
-      my $color;
+   my ( $name ) = @_;
 
-      if( $name =~ m{^(.*)/(.*)$} ) {
-         ( my $dicts, $name ) = ( $1, $2 );
+   my $color;
 
-         $color = Color::Library->color( [ split m/,/, $dicts ], $name );
-      }
-      else {
-         $color = Color::Library->color( $name );
-      }
+   if( $name =~ m{^(.*)/(.*)$} ) {
+      ( my $dicts, $name ) = ( $1, $2 );
 
-      defined $color or croak "No such library color named '$name'";
-      return $class->SUPER::new( $color->rgb );
+      $color = Color::Library->color( [ split m/,/, $dicts ], $name );
    }
    else {
-      croak "usage: Convert::Color::Library->new( NAME )";
+      $color = Color::Library->color( $name );
    }
+
+   defined $color or croak "No such library color named '$name'";
+   my $self = $class->SUPER::new( $color->rgb );
+
+   $self->[3] = $color->name;
+   $self->[4] = $color->dictionary->name;
+
+   return $self;
 }
 
-# Keep perl happy; keep Britain tidy
-1;
+=head1 METHODS
 
-__END__
+=cut
+
+=head2 $name = $color->name
+
+=head2 $dict = $color->dict
+
+Returns the name of the color within its dictionary, and the name of the
+dictionary itself.
+
+=cut
+
+sub name { shift->[3] }
+sub dict { shift->[4] }
 
 =head1 TODO
 
@@ -109,6 +123,10 @@ __END__
 Consider an API for getting the list of dictionary names and colour names.
 That said, it's easy enough to do directly to C<Color::Library>, so maybe not
 needed.
+
+=item *
+
+Expose other dictionaries (SVG? Windows?) as named spaces, like the HTML one.
 
 =back
 
@@ -124,8 +142,16 @@ L<Convert::Color> - color space conversions
 
 L<Color::Library> - An easy-to-use and comprehensive named-color library
 
+=item *
+
+L<Convert::Color::HTML> - color conversion using C<Color::Library::Dictionary::HTML>
+
 =back
 
 =head1 AUTHOR
 
 Paul Evans <leonerd@leonerd.org.uk>
+
+=cut
+
+0x55AA;

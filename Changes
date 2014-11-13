@@ -1,5 +1,11 @@
 Revision history for Convert-Color-Library
 
+0.04    2014/11/13 19:15:06
+        [CHANGES]
+         * Expose Convert::Color::HTML as a toplevel colorspace; give it
+           HTML-specific abilities with #RRGGBB notation
+         * General distribution updates
+
 0.03    CHANGES:
          * Updated for Convert::Color 0.06
 
