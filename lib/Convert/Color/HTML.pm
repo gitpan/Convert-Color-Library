@@ -14,7 +14,7 @@ use Color::Library;
 
 __PACKAGE__->register_color_space( 'html' );
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 =head1 NAME
 
@@ -100,8 +100,10 @@ sub new_from_rgb8
    unless( keys %palette ) {
       %palette = map {
          my $color = $class->new( $_ );
-         $color->hex => $color 
-      } Color::Library::Dictionary::HTML->color_names;
+         $color->hex => $color
+      }
+      # RT100404 - omit the misspelled 'fuscia'
+         grep { $_ ne "fuscia" } Color::Library::Dictionary::HTML->color_names;
    }
 
    return $palette{$hex} || $class->new( "#$hex" );
